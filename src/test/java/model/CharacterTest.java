@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class CharacterTest {
 
@@ -18,8 +17,7 @@ class CharacterTest {
 
 	@DisplayName("입력받는 글자가 영문자가 아닌 경우 에러를 반환한다.")
 	@ParameterizedTest
-	@CsvSource(value = {"1","!","?",">"})
-	@NullAndEmptySource
+	@CsvSource(value = {"1", "!", "?", ">"})
 	void validationOnlyEnglishTest(char character) {
 		assertThatThrownBy(
 			() -> new Character(character)
