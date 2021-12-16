@@ -13,6 +13,31 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class WordTest {
 
+	@DisplayName("도메인 심화분석을 위한 초기형태의 전기능 구현.")
+	@Test
+	void prototypeTest() {
+		String aaa = "aaabBc";
+
+		Map<String, Integer> result = new HashMap<>();
+
+		AtomicInteger integer = new AtomicInteger();
+
+		for (int i = 0; i < aaa.length(); i++) {
+			char c = aaa.charAt(i);
+
+			if (aaa.indexOf(c) != -1) {
+				if (result.get(String.valueOf(c)) == null) {
+					integer.getAndSet(0);
+				}
+				result.put(String.valueOf(c), integer.getAndIncrement());
+			}
+		}
+
+		for (String key : result.keySet()) {
+			System.out.println(key + " : " + result.get(key));
+		}
+	}
+
 	@DisplayName("단어를 입력받아 각 글자별 카운트값을 가지는 객체를 생성한다.")
 	@Test
 	void createTest() {
