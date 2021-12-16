@@ -16,24 +16,24 @@ class WordTest {
 	@DisplayName("도메인 심화분석을 위한 초기형태의 전기능 구현.")
 	@Test
 	void prototypeTest() {
-		String aaa = "aaabBc";
+		String aaa = "aaabBbc";
 
-		Map<String, Integer> result = new HashMap<>();
+		Map<java.lang.Character, Integer> result = new HashMap<>();
 
 		AtomicInteger integer = new AtomicInteger();
 
 		for (int i = 0; i < aaa.length(); i++) {
-			char c = aaa.charAt(i);
+			char character = aaa.charAt(i);
 
-			if (aaa.indexOf(c) != -1) {
-				if (result.get(String.valueOf(c)) == null) {
-					integer.getAndSet(0);
-				}
-				result.put(String.valueOf(c), integer.getAndIncrement());
+			if(result.containsKey(character)){
+				result.put(character, integer.incrementAndGet());
+			}else{
+				integer.set(1);
+				result.put(character, integer.intValue());
 			}
 		}
 
-		for (String key : result.keySet()) {
+		for (java.lang.Character key : result.keySet()) {
 			System.out.println(key + " : " + result.get(key));
 		}
 	}
